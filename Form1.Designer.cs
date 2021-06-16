@@ -80,6 +80,7 @@ namespace Trabalho
             this.txtbx_Kp.Size = new System.Drawing.Size(100, 23);
             this.txtbx_Kp.TabIndex = 3;
             this.txtbx_Kp.Text = "0";
+            this.txtbx_Kp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbx_Kp_KeyPress);
             // 
             // txtbx_Ki
             // 
@@ -88,6 +89,7 @@ namespace Trabalho
             this.txtbx_Ki.Size = new System.Drawing.Size(100, 23);
             this.txtbx_Ki.TabIndex = 4;
             this.txtbx_Ki.Text = "0";
+            this.txtbx_Ki.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbx_Ki_KeyPress);
             // 
             // txtbx_Kd
             // 
@@ -96,6 +98,7 @@ namespace Trabalho
             this.txtbx_Kd.Size = new System.Drawing.Size(100, 23);
             this.txtbx_Kd.TabIndex = 5;
             this.txtbx_Kd.Text = "0";
+            this.txtbx_Kd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbx_Kd_KeyPress);
             // 
             // btn_comeca
             // 
@@ -109,6 +112,7 @@ namespace Trabalho
             // 
             // timer1
             // 
+            this.timer1.Interval = 30;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // progressBar1
@@ -190,6 +194,7 @@ namespace Trabalho
             this.txtbx_valorDesejado.Size = new System.Drawing.Size(44, 23);
             this.txtbx_valorDesejado.TabIndex = 13;
             this.txtbx_valorDesejado.Text = "0";
+            this.txtbx_valorDesejado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbx_valorDesejado_KeyPress);
             // 
             // groupBox2
             // 
@@ -211,6 +216,7 @@ namespace Trabalho
             this.txtbx_ValorInicial.Size = new System.Drawing.Size(44, 23);
             this.txtbx_ValorInicial.TabIndex = 15;
             this.txtbx_ValorInicial.Text = "0";
+            this.txtbx_ValorInicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbx_ValorInicial_KeyPress);
             // 
             // labelValorInicial
             // 

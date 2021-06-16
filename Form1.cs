@@ -32,7 +32,7 @@ namespace Trabalho
 
             labelBarra.Text = Convert.ToString(progressBar1.Value);
 
-            tempoDaUltimaAtt = TimeSpan.FromSeconds(0.100);
+            tempoDaUltimaAtt = TimeSpan.FromSeconds(0.030);
             timer1.Enabled = true;
 
         }
@@ -41,15 +41,15 @@ namespace Trabalho
         {
             contador++;
 
-            if (contador >= 4)
+            if (contador >= 2)
             {
                 progressBar1.PerformStep();
                 contador = 0;
             }
 
-            label2.Text = Convert.ToString(pid.TermoIntegral);
-            label3.Text = Convert.ToString(pid.VariavelProcesso);
-            label4.Text = Convert.ToString(pid.VariavelControle(tempoDaUltimaAtt));
+            label2.Text = Convert.ToString(pid.Kp);
+            label3.Text = Convert.ToString(pid.Ki);
+            label4.Text = Convert.ToString(pid.Kd);
 
             progressBar1.Value = Convert.ToInt32(pid.VariavelControle(tempoDaUltimaAtt));
             labelBarra.Text = Convert.ToString(progressBar1.Value);
@@ -59,6 +59,66 @@ namespace Trabalho
         private void btn_para_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
+        }
+
+        private void txtbx_Kp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            {
+                e.Handled = true;
+                MessageBox.Show("Este campo aceita somente números reais.\nPor favor, use vírgula para separar os decimais.");
+            }
+            if ((e.KeyChar == ',') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+                MessageBox.Show("Este campo aceita somente uma vírgula.");
+            }
+        }
+
+        private void txtbx_Ki_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            {
+                e.Handled = true;
+                MessageBox.Show("Este campo aceita somente números reais.\nPor favor, use vírgula para separar os decimais.");
+            }
+            if ((e.KeyChar == ',') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+                MessageBox.Show("Este campo aceita somente uma vírgula.");
+            }
+        }
+
+        private void txtbx_Kd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            {
+                e.Handled = true;
+                MessageBox.Show("Este campo aceita somente números reais.\nPor favor, use vírgula para separar os decimais.");
+            }
+            if ((e.KeyChar == ',') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+                MessageBox.Show("Este campo aceita somente uma vírgula.");
+            }
+        }
+
+        private void txtbx_valorDesejado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Este campo aceita somente números naturais.");
+            }
+        }
+
+        private void txtbx_ValorInicial_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Este campo aceita somente números naturais.");
+            }
         }
     }
 }
