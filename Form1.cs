@@ -47,10 +47,6 @@ namespace Trabalho
                 contador = 0;
             }
 
-            label2.Text = Convert.ToString(pid.Kp);
-            label3.Text = Convert.ToString(pid.Ki);
-            label4.Text = Convert.ToString(pid.Kd);
-
             progressBar1.Value = Convert.ToInt32(pid.VariavelControle(tempoDaUltimaAtt));
             labelBarra.Text = Convert.ToString(progressBar1.Value);
 
