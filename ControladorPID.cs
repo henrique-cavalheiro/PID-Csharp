@@ -45,7 +45,7 @@ namespace Trabalho
 
         public double SaidaMin { get; private set; } = 0;
 
-        public double TermoIntegral { get; set; } = 0;
+        public double TermoIntegral { get; private set; } = 0;
 
         public double VariavelProcesso
         {
