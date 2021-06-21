@@ -46,8 +46,8 @@ namespace Trabalho
             this.labelBarra = new System.Windows.Forms.Label();
             this.txtbx_valorDesejado = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtbx_ValorInicial = new System.Windows.Forms.TextBox();
-            this.labelValorInicial = new System.Windows.Forms.Label();
+            this.txtbxTempoDecorrido = new System.Windows.Forms.TextBox();
+            this.labelTempoDecorrido = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -109,7 +109,7 @@ namespace Trabalho
             // 
             // timer1
             // 
-            this.timer1.Interval = 30;
+            this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // progressBar1
@@ -149,7 +149,7 @@ namespace Trabalho
             // 
             // btn_para
             // 
-            this.btn_para.Location = new System.Drawing.Point(244, 174);
+            this.btn_para.Location = new System.Drawing.Point(240, 174);
             this.btn_para.Name = "btn_para";
             this.btn_para.Size = new System.Drawing.Size(75, 23);
             this.btn_para.TabIndex = 13;
@@ -186,7 +186,7 @@ namespace Trabalho
             // 
             // txtbx_valorDesejado
             // 
-            this.txtbx_valorDesejado.Location = new System.Drawing.Point(98, 34);
+            this.txtbx_valorDesejado.Location = new System.Drawing.Point(109, 34);
             this.txtbx_valorDesejado.Name = "txtbx_valorDesejado";
             this.txtbx_valorDesejado.Size = new System.Drawing.Size(44, 23);
             this.txtbx_valorDesejado.TabIndex = 13;
@@ -195,34 +195,35 @@ namespace Trabalho
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtbx_ValorInicial);
-            this.groupBox2.Controls.Add(this.labelValorInicial);
+            this.groupBox2.Controls.Add(this.txtbxTempoDecorrido);
+            this.groupBox2.Controls.Add(this.labelTempoDecorrido);
             this.groupBox2.Controls.Add(this.txtbx_valorDesejado);
             this.groupBox2.Controls.Add(this.labelValor);
-            this.groupBox2.Location = new System.Drawing.Point(204, 27);
+            this.groupBox2.Location = new System.Drawing.Point(197, 27);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(152, 141);
+            this.groupBox2.Size = new System.Drawing.Size(159, 141);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Parâmetros Planta";
             // 
-            // txtbx_ValorInicial
+            // txtbxTempoDecorrido
             // 
-            this.txtbx_ValorInicial.Location = new System.Drawing.Point(98, 86);
-            this.txtbx_ValorInicial.Name = "txtbx_ValorInicial";
-            this.txtbx_ValorInicial.Size = new System.Drawing.Size(44, 23);
-            this.txtbx_ValorInicial.TabIndex = 15;
-            this.txtbx_ValorInicial.Text = "0";
-            this.txtbx_ValorInicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbx_ValorInicial_KeyPress);
+            this.txtbxTempoDecorrido.Location = new System.Drawing.Point(113, 86);
+            this.txtbxTempoDecorrido.Name = "txtbxTempoDecorrido";
+            this.txtbxTempoDecorrido.ReadOnly = true;
+            this.txtbxTempoDecorrido.Size = new System.Drawing.Size(40, 23);
+            this.txtbxTempoDecorrido.TabIndex = 15;
+            this.txtbxTempoDecorrido.Text = "0";
+            this.txtbxTempoDecorrido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbx_ValorInicial_KeyPress);
             // 
-            // labelValorInicial
+            // labelTempoDecorrido
             // 
-            this.labelValorInicial.AutoSize = true;
-            this.labelValorInicial.Location = new System.Drawing.Point(6, 89);
-            this.labelValorInicial.Name = "labelValorInicial";
-            this.labelValorInicial.Size = new System.Drawing.Size(67, 15);
-            this.labelValorInicial.TabIndex = 14;
-            this.labelValorInicial.Text = "Valor inicial";
+            this.labelTempoDecorrido.AutoSize = true;
+            this.labelTempoDecorrido.Location = new System.Drawing.Point(6, 89);
+            this.labelTempoDecorrido.Name = "labelTempoDecorrido";
+            this.labelTempoDecorrido.Size = new System.Drawing.Size(97, 15);
+            this.labelTempoDecorrido.TabIndex = 14;
+            this.labelTempoDecorrido.Text = "Tempo decorrido";
             // 
             // Form1
             // 
@@ -238,6 +239,7 @@ namespace Trabalho
             this.Controls.Add(this.btn_comeca);
             this.Name = "Form1";
             this.Text = "Controle PID";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -264,8 +266,8 @@ namespace Trabalho
         private System.Windows.Forms.Label labelBarra;
         private System.Windows.Forms.TextBox txtbx_valorDesejado;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtbx_ValorInicial;
-        private System.Windows.Forms.Label labelValorInicial;
+        private System.Windows.Forms.TextBox txtbxTempoDecorrido;
+        private System.Windows.Forms.Label labelTempoDecorrido;
     }
 }
 

@@ -12,12 +12,16 @@ namespace Trabalho
 {
     public partial class Form1 : Form
     {
-        ControladorPID pid = new ControladorPID(0, 0, 0, 1000D, 0);
+        ControladorPID pid = new ControladorPID(0, 0, 0, 100D, 10D);
         TimeSpan tempoDaUltimaAtt = new TimeSpan();
+        Planta planta = new Planta();
+        Atuador atuador = new Atuador();
         public int contador = 0;
+        double saidaPlanta = 0, saidaAtuador = 0;
         public Form1()
         {
             InitializeComponent();
+            MessageBox.Show("Controle PID de uma planta com uma função de transferência F=5/(s^2 + 4*s + 3) para uma entrada degrau.");
         }
 
         private void btn_comeca_Click(object sender, EventArgs e)
@@ -26,30 +30,32 @@ namespace Trabalho
             pid.Ki = Convert.ToDouble(txtbx_Ki.Text);
             pid.Kd = Convert.ToDouble(txtbx_Kd.Text);
             pid.ValorDesejado = Convert.ToDouble(txtbx_valorDesejado.Text);
-            pid.VariavelProcesso = Convert.ToDouble(txtbx_ValorInicial.Text);
+            pid.VariavelProcesso = 0;
             pid.TermoIntegral = 0;
-            progressBar1.Value = Int32.Parse(txtbx_ValorInicial.Text);
+            progressBar1.Value = 0;
+            planta.ResetaTempo();
+            atuador.ResetaTempo();
+            atuador.Saida = 1000D;
+            saidaPlanta = 0;
+            saidaAtuador = 0;
 
             labelBarra.Text = Convert.ToString(progressBar1.Value);
 
-            tempoDaUltimaAtt = TimeSpan.FromSeconds(0.030);
+            tempoDaUltimaAtt = TimeSpan.FromSeconds(0.100);
             timer1.Enabled = true;
 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            contador++;
-
-            if (contador >= 2)
-            {
-                progressBar1.PerformStep();
-                contador = 0;
-            }
-
-            progressBar1.Value = Convert.ToInt32(pid.VariavelControle(tempoDaUltimaAtt));
+            pid.VariavelProcesso = saidaPlanta;
+            atuador.EntradaAtual =pid.VariavelControle(tempoDaUltimaAtt);
+            saidaAtuador=atuador.Atuar(tempoDaUltimaAtt);
+            saidaPlanta = planta.AtualizaPlanta(saidaAtuador, tempoDaUltimaAtt);
+            
+            progressBar1.Value = Convert.ToInt32(saidaPlanta);
             labelBarra.Text = Convert.ToString(progressBar1.Value);
-
+            txtbxTempoDecorrido.Text = Convert.ToString(planta.TempoDecorrido);
         }
 
         private void btn_para_Click(object sender, EventArgs e)
@@ -106,6 +112,11 @@ namespace Trabalho
                 e.Handled = true;
                 MessageBox.Show("Este campo aceita somente números naturais.");
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void txtbx_ValorInicial_KeyPress(object sender, KeyPressEventArgs e)
